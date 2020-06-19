@@ -1,12 +1,21 @@
 import * as React from 'react';
+import {PersistGate} from 'redux-persist/es/integration/react';
+import {ActivityIndicator} from 'react-native';
 import RootContainer from './RootContainer';
 import {Provider} from 'react-redux';
-import store from '../Store';
+import configureStore from '../Store';
+
+const {persistor, store} = configureStore();
 
 function App() {
   return (
     <Provider store={store}>
-      <RootContainer />
+      <PersistGate
+        loading={<ActivityIndicator size="large" color="#0000ff" />}
+        // onBeforeLift={onBeforeLift}
+        persistor={persistor}>
+        <RootContainer />
+      </PersistGate>
     </Provider>
   );
 }
