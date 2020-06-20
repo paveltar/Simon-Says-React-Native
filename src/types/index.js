@@ -1,3 +1,3 @@
 export default {
-  SOME_TYPE: 'SOME_TYPE',
+  ADD_SCORE: 'ADD_SCORE',
 };

@@ -1,13 +1,15 @@
-// import types from '../types';
+import types from '../types';
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = {
+  scores: [],
+};
 
 export default (state = INITIAL_STATE, action) => {
-  // switch (action.type) {
-  // 	case types.SOME_TYPE:
-  // 		return { ...state }
-  // 	default:
-  // 		return state
-  // }
+  switch (action.type) {
+  	case types.ADD_SCORE:
+  		return { ...state, scores: [...state.scores, action.payload] }
+  	default:
+  		return state
+  }
   return state;
 };
