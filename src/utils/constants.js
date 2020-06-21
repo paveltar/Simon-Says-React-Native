@@ -25,5 +25,6 @@ export const buttonsArray = [
         letter: 'D',
         sound: new Sound('fa_sound.mp3', Sound.MAIN_BUNDLE),
     },
-]
- // more buttons can be added dynamically
+]; // more buttons can be added dynamically
+
+export const GAME_SPEED = 15;
