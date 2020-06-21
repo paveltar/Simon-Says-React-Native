@@ -12,7 +12,6 @@ function App() {
     <Provider store={store}>
       <PersistGate
         loading={<ActivityIndicator size="large" color="#0000ff" />}
-        // onBeforeLift={onBeforeLift}
         persistor={persistor}>
         <RootContainer />
       </PersistGate>

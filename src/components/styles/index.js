@@ -40,14 +40,10 @@ export default StyleSheet.create({
     width: gameContainerSize,
     height: gameContainerSize,
     flexDirection: 'row',
-    // borderWidth: 1,
-    // borderColor: 'red',
   },
   gameButton: {
-    // flexDirection: 'row-reverse',
     width: '50%',
     height: '50%',
-    // borderWidth: 1,
   },
   gameButtonText: {
     fontSize: 40,

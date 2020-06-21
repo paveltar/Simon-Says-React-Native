@@ -32,12 +32,8 @@ export const useGame = () => {
     buttonsArray[noteIndex].sound.play();
   };
 
-  // const test = useSelector((state) => state.test);
-  // const dispatch = useDispatch();
-
   const [gameStarted, setGameStarted] = useState(false);
   const [playersTurn, setPlayersTurn] = useState(false);
-  // const [delay, setDelay] = useState(false);
   const [activeButtonIndex, setActiveButtonIndex] = useState(null);
   const [gameLevel, setGameLevel] = useState(0);
   const [gameSequence, setGameSequence] = useState([]);
