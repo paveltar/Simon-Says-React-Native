@@ -6,10 +6,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  	case types.ADD_SCORE:
-  		return { ...state, scores: [...state.scores, action.payload] }
-  	default:
-  		return state
+    case types.ADD_SCORE:
+      return {...state, scores: [...state.scores, action.payload]};
+    default:
+      return state;
   }
-  return state;
 };

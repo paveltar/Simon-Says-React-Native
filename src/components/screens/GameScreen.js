@@ -1,23 +1,60 @@
-import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import {/* useSelector, */ useDispatch} from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  BackHandler,
+  TextInput,
+} from 'react-native';
+import {useDispatch} from 'react-redux';
 import styles from '../styles';
 import {buttonsArray} from '../../utils/constants';
 import {useGame} from '../../hooks';
+import ScoreModal from '../ScoreModal';
+import {addScore} from '../../actions';
 
-const GameScreen = () => {
+const GameScreen = ({navigation: {navigate}}) => {
   const [
     [activeButtonIndex, setActiveButtonIndex],
     gameStarted,
     playersTurn,
     gameLevel,
+    playerLost,
     startTheGame,
     handlePlayerNoteInput,
   ] = useGame();
 
+  const dispatch = useDispatch();
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    if (playerLost) {
+      setModalVisible(true);
+    }
+  }, [playerLost]);
+
   return (
     <View style={[styles.container, {alignItems: 'center'}]}>
-      <View style={[{marginTop: 200}, !gameStarted && {opacity: 0}]}>
+      <ScoreModal
+        gameLevel={gameLevel}
+        onClosePress={() => {
+          setModalVisible(false);
+        }}
+        visible={modalVisible}
+        setPlayerName={(name) => {
+          navigate('ScoreBoard');
+          dispatch(
+            addScore({
+              name,
+              score: gameLevel,
+            }),
+          );
+        }}
+      />
+
+      <View style={[{marginTop: 200}, !gameStarted && styles.invisible]}>
         <Text>Games score: {gameLevel}</Text>
       </View>
       <View style={styles.gameContainer}>
@@ -26,20 +63,9 @@ const GameScreen = () => {
             disabled={!gameStarted || !playersTurn}
             activeOpacity={1}
             key={item.letter}
-            onPressIn={() => {
-              setActiveButtonIndex(index);
-            }}
-            onPressOut={() => {
-              setActiveButtonIndex(null);
-            }}
-            onPress={async () => {
-              handlePlayerNoteInput(index);
-
-              // preventing multiple button presses
-              // setDelay(true)
-              // await sleep(10)
-              // setDelay(false)
-            }}
+            onPressIn={() => setActiveButtonIndex(index)}
+            onPressOut={() => setActiveButtonIndex(null)}
+            onPress={async () => handlePlayerNoteInput(index)}
             style={[
               styles.gameButton,
               styles.center,

@@ -1,5 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
-import { buttonsArray } from '../../utils/constants';
+import { buttonsArray, backgroundColor } from '../../utils/constants';
 
 const {width} = Dimensions.get('window');
 
@@ -8,7 +8,7 @@ const gameContainerSize = 1000 / buttonsArray.length
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor,
   },
   center: {
     justifyContent: 'center',
@@ -39,7 +39,7 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     width: gameContainerSize,
     height: gameContainerSize,
-    // flexDirection: 'row',
+    flexDirection: 'row',
     // borderWidth: 1,
     // borderColor: 'red',
   },
@@ -51,5 +51,23 @@ export default StyleSheet.create({
   },
   gameButtonText: {
     fontSize: 40,
-  }
+  },
+  invisible: {opacity: 0},
+  modal: {
+    backgroundColor: 'pink',
+    flex: 1,
+    alignItems: 'center',
+    padding: 100,
+  },
+  modalButtons: {
+    flexDirection: 'row',
+  },
+  inputContainer: {
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderRadius: 50,
+    height: 40,
+    borderColor: 'gray',
+    width: width / 2,
+},
 });

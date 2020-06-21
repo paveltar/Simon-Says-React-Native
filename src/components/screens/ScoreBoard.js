@@ -2,21 +2,29 @@ import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import styles from '../styles';
 
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
+import {MAX_SCORE_ARRAY_LENGTH} from '../../utils/constants';
+import {sortScores} from '../../utils';
 
-const ScoreBoard = (props) => {
+const ScoreBoard = () => {
   const scores = useSelector((state) => state.scores);
 
-  const mapScores = (score, index) => {
+  const mapScores = ({name, score}, index) => {
     return [
       // Separator
       // add player name
-      index > 0 && <View key={`${score}-separator`} style={styles.separator} />,
-      <Text key={score} style={styles.score}>{`${index}: ${score}`}</Text>,
+      index > 0 && <View key={`${name}-separator`} style={styles.separator} />,
+      <Text key={name} style={styles.score}>{`${
+        index + 1
+      }. ${name} - score: ${score}`}</Text>,
     ];
   };
 
-  const renderContent = () => <ScrollView>{scores.map(mapScores)}</ScrollView>;
+  const renderContent = () => (
+    <ScrollView>
+      {scores.sort(sortScores).slice(0, MAX_SCORE_ARRAY_LENGTH).map(mapScores)}
+    </ScrollView>
+  );
 
   return (
     <View style={[styles.container, styles.center]}>

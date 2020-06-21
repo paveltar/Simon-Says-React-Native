@@ -4,6 +4,8 @@ import {buttonsArray, GAME_SPEED} from '../utils/constants';
 
 export const useGame = () => {
   const startTheGame = async () => {
+    setGameLevel(0);
+    setPlayerLost(false);
     setGameStarted(true);
     await sleep(500);
     nextLevel();
@@ -40,20 +42,24 @@ export const useGame = () => {
   const [gameLevel, setGameLevel] = useState(0);
   const [gameSequence, setGameSequence] = useState([]);
   const [playerSequence, setPlayerSequence] = useState([]);
+  const [playerLost, setPlayerLost] = useState(false);
 
   // check if last user note is correct
   useEffect(() => {
     if (gameStarted) {
       const start = async () => {
         const index = playerSequence.length - 1;
+
+        // Player lost
         if (playerSequence[index] !== gameSequence[index]) {
           setGameStarted(false);
+          setPlayerLost(true)
           setPlayerSequence([]);
           setGameSequence([]);
-          setGameLevel(0);
-          alert('you lose');
+          return;
         }
 
+        // Player gets to next level
         if (playerSequence.length === gameSequence.length) {
           setGameLevel((level) => level + 1);
           setPlayersTurn(false);
@@ -86,6 +92,7 @@ export const useGame = () => {
     gameStarted,
     playersTurn,
     gameLevel,
+    playerLost,
     startTheGame,
     handlePlayerNoteInput,
   ];

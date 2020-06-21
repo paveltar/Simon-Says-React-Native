@@ -4,3 +4,5 @@ export const getRandomInt = (min, max) => {
   const _min = Math.ceil(min);
   return Math.floor(Math.random() * (Math.floor(max) - _min + 1)) + _min;
 };
+
+export const sortScores = (a, b) => b.score - a.score;
