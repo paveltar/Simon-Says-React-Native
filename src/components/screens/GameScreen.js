@@ -55,7 +55,7 @@ const GameScreen = ({navigation: {navigate}}) => {
       />
 
       <View style={[{marginTop: 200}, !gameStarted && styles.invisible]}>
-        <Text>Games score: {gameLevel}</Text>
+        <Text>Game score: {gameLevel}</Text>
       </View>
       <View style={styles.gameContainer}>
         {buttonsArray.map((item, index) => (
