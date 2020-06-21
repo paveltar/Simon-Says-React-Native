@@ -27,8 +27,9 @@ const GameScreen = () => {
   const playNote = async noteIndex => {
     setActiveButtonIndex(noteIndex)
     buttonsArray[noteIndex].sound.play()
-    await sleep(650)
+    await sleep(450)
     setActiveButtonIndex(null)
+    await sleep(200)
   }
 
   const playSequence = async sequence => {
