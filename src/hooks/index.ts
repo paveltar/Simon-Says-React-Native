@@ -2,7 +2,11 @@ import {useState, useEffect} from 'react';
 import {sleep, getRandomInt} from '../utils';
 import {buttonsArray, GAME_SPEED} from '../utils/constants';
 
-export const useGame = () => {
+interface UseState {
+  name: string;
+}
+
+export const useGame: any = () => {
   const startTheGame = async () => {
     setGameLevel(0);
     setPlayerLost(false);
@@ -14,10 +18,10 @@ export const useGame = () => {
   const nextLevel = async () => {
     await sleep(2000 / GAME_SPEED);
     const nextNoteIndex = getRandomInt(0, buttonsArray.length - 1);
-    setGameSequence((sequence) => [...sequence, nextNoteIndex]);
+    setGameSequence((sequence: Array<number>) => [...sequence, nextNoteIndex]);
   };
 
-  const playNote = async (noteIndex) => {
+  const playNote = async (noteIndex: number) => {
     setActiveButtonIndex(noteIndex);
     buttonsArray[noteIndex].sound.stop();
     buttonsArray[noteIndex].sound.play();
@@ -26,18 +30,20 @@ export const useGame = () => {
     await sleep(2000 / GAME_SPEED);
   };
 
-  const handlePlayerNoteInput = (noteIndex) => {
-    setPlayerSequence((sequence) => [...sequence, noteIndex]);
+  const handlePlayerNoteInput = (noteIndex: number) => {
+    setPlayerSequence((sequence: Array<number>) => [...sequence, noteIndex]);
     buttonsArray[noteIndex].sound.stop();
     buttonsArray[noteIndex].sound.play();
   };
 
-  const [gameStarted, setGameStarted] = useState(false);
-  const [playersTurn, setPlayersTurn] = useState(false);
-  const [activeButtonIndex, setActiveButtonIndex] = useState(null);
-  const [gameLevel, setGameLevel] = useState(0);
-  const [gameSequence, setGameSequence] = useState([]);
-  const [playerSequence, setPlayerSequence] = useState([]);
+  const [gameStarted, setGameStarted] = useState<Boolean>(false);
+  const [playersTurn, setPlayersTurn] = useState<Boolean>(false);
+  const [activeButtonIndex, setActiveButtonIndex] = useState<Number | null>(
+    null,
+  );
+  const [gameLevel, setGameLevel] = useState<number>(0);
+  const [gameSequence, setGameSequence] = useState<Array<number>>([]);
+  const [playerSequence, setPlayerSequence]: any = useState([]);
   const [playerLost, setPlayerLost] = useState(false);
 
   // check if last user note is correct
@@ -70,7 +76,7 @@ export const useGame = () => {
 
   // starting the game and repeating the sequence after each success
   useEffect(() => {
-    const playSequence = async (sequence) => {
+    const playSequence = async (sequence: Array<number>) => {
       for (let i = 0; i < sequence.length; i++) {
         await playNote(sequence[i]);
       }

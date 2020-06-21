@@ -5,11 +5,12 @@ import styles from '../styles';
 import {useSelector} from 'react-redux';
 import {MAX_SCORE_ARRAY_LENGTH} from '../../utils/constants';
 import {sortScores} from '../../utils';
+import {Score, State} from '../../reducers';
 
-const ScoreBoard = () => {
-  const scores = useSelector((state) => state.scores);
+const ScoreBoard: React.FC = () => {
+  const scores: Array<Score> = useSelector((state: State) => state.scores);
 
-  const mapScores = ({name, score}, index) => {
+  const mapScores = ({name, score}: Score, index: number) => {
     return [
       // Separator
       // add player name

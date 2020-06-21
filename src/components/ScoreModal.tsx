@@ -2,7 +2,17 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Modal, TextInput} from 'react-native';
 import styles from './styles';
 
-const ScoreModal = ({onClosePress, setPlayerName, gameLevel, ...rest}) => {
+const ScoreModal = ({
+  onClosePress,
+  setPlayerName,
+  gameLevel,
+  ...rest
+}: {
+  onClosePress: Function;
+  setPlayerName: Function;
+  gameLevel: Number;
+  rest: Array<any>;
+}) => {
   const [text, setText] = useState('');
 
   const _onClosePress = () => {

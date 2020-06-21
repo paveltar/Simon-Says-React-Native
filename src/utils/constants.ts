@@ -1,6 +1,12 @@
 import Sound from 'react-native-sound';
 
-export const buttonsArray = [
+interface Button {
+  hslColor: string;
+  letter: string;
+  sound: any;
+}
+
+export const buttonsArray: Array<Button> = [
   {
     hslColor: '120', // green
     letter: 'A',
@@ -23,8 +29,8 @@ export const buttonsArray = [
   },
 ]; // more buttons can be added dynamically
 
-export const GAME_SPEED = 15;
+export const GAME_SPEED: number = 15;
 
-export const backgroundColor = 'rgb(225, 225, 225)';
+export const backgroundColor: string = 'rgb(225, 225, 225)';
 
-export const MAX_SCORE_ARRAY_LENGTH = 10;
+export const MAX_SCORE_ARRAY_LENGTH: number = 10;

@@ -1,12 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Modal,
-  BackHandler,
-  TextInput,
-} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {useDispatch} from 'react-redux';
 import styles from '../styles';
 import {buttonsArray} from '../../utils/constants';
@@ -14,7 +7,10 @@ import {useGame} from '../../hooks';
 import ScoreModal from '../ScoreModal';
 import {addScore} from '../../actions';
 
-const GameScreen = ({navigation: {navigate}}) => {
+const GameScreen: React.FC = (props) => {
+  const {
+    navigation: {navigate},
+  }: any = props;
   const [
     [activeButtonIndex, setActiveButtonIndex],
     gameStarted,
@@ -43,7 +39,7 @@ const GameScreen = ({navigation: {navigate}}) => {
           setModalVisible(false);
         }}
         visible={modalVisible}
-        setPlayerName={(name) => {
+        setPlayerName={(name: string) => {
           navigate('ScoreBoard');
           dispatch(
             addScore({
@@ -87,8 +83,6 @@ const GameScreen = ({navigation: {navigate}}) => {
           <Text>Play</Text>
         </TouchableOpacity>
       )}
-      {/* <Text>gameSequence {gameSequence}</Text>
-      <Text>playerSequence {playerSequence}</Text> */}
     </View>
   );
 };
