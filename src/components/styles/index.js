@@ -1,9 +1,9 @@
 import {StyleSheet, Dimensions} from 'react-native';
-import { buttonsArray, backgroundColor } from '../../utils/constants';
+import {buttonsArray, backgroundColor} from '../../utils/constants';
 
 const {width} = Dimensions.get('window');
 
-const gameContainerSize = 1000 / buttonsArray.length
+const gameContainerSize = 1000 / buttonsArray.length;
 
 export default StyleSheet.create({
   container: {
@@ -69,5 +69,5 @@ export default StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     width: width / 2,
-},
+  },
 });

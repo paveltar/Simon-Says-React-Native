@@ -14,7 +14,7 @@ export const useGame = () => {
   const nextLevel = async () => {
     await sleep(2000 / GAME_SPEED);
     const nextNoteIndex = getRandomInt(0, buttonsArray.length - 1);
-    setGameSequence(sequence => [...sequence, nextNoteIndex]);
+    setGameSequence((sequence) => [...sequence, nextNoteIndex]);
   };
 
   const playNote = async (noteIndex) => {
@@ -53,7 +53,7 @@ export const useGame = () => {
         // Player lost
         if (playerSequence[index] !== gameSequence[index]) {
           setGameStarted(false);
-          setPlayerLost(true)
+          setPlayerLost(true);
           setPlayerSequence([]);
           setGameSequence([]);
           return;
@@ -75,7 +75,9 @@ export const useGame = () => {
   // starting the game and repeating the sequence after each success
   useEffect(() => {
     const playSequence = async (sequence) => {
-      for (let i = 0; i < sequence.length; i++) await playNote(sequence[i]);
+      for (let i = 0; i < sequence.length; i++) {
+        await playNote(sequence[i]);
+      }
     };
 
     if (gameStarted) {

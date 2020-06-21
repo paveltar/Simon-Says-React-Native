@@ -1,4 +1,5 @@
-export const sleep = time => new Promise((resolve) => setTimeout(resolve, time));
+export const sleep = (time) =>
+  new Promise((resolve) => setTimeout(resolve, time));
 
 export const getRandomInt = (min, max) => {
   const _min = Math.ceil(min);

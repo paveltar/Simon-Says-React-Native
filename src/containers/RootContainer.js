@@ -2,7 +2,7 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import GameScreen from '../components/screens/GameScreen';
 import ScoreBoard from '../components/screens/ScoreBoard';
-import {backgroundColor} from '../utils/constants'
+import {backgroundColor} from '../utils/constants';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 

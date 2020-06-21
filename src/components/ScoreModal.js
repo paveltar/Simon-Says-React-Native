@@ -8,7 +8,7 @@ const ScoreModal = ({onClosePress, setPlayerName, gameLevel, ...rest}) => {
   const _onClosePress = () => {
     onClosePress();
     setText('');
-  }
+  };
 
   return (
     <Modal animationType="slide" transparent={false} {...rest}>
